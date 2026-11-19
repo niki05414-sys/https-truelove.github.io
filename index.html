@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测测你正缘长啥样，这波真的会撞上吗</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Google Fonts 思源黑体与 Inter 保证中文排版清晰美观 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans SC"', '"Inter"', '-apple-system', 'BlinkMacSystemFont', '"PingFang SC"', '"Hiragino Sans GB"', '"Microsoft YaHei"', 'sans-serif'],
+                    },
+                    colors: {
+                        memo: {
+                            bg: '#F7F6F2',
+                            card: '#FFFFFF',
+                            ink: '#2C2A29',
+                            muted: '#7A7571',
+                            accent: '#3B3735',
+                            cream: '#FAF5EB',
+                            pink: '#F6EAEB',
+                            yellow: '#F9F5E3',
+                            blue: '#EBF0F5',
+                            green: '#EAF4EE',
+                            peach: '#F9ECE6'
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px -10px rgba(44, 42, 41, 0.06)',
+                        'card': '0 4px 20px rgba(44, 42, 41, 0.04)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 基础样式与移动端交互优化 */
+        html, body {
+            background-color: #EFECE6;
+            color: #2C2A29;
+            -webkit-tap-highlight-color: transparent;
+            overscroll-behavior-y: none;
+        }
+
+        /* 视图切换平滑过渡动画 */
+        .view-section {
+            display: none;
+            animation: fadeSlideUp 0.36s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .view-section.active {
+            display: flex;
+        }
+
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 选项卡片点击反馈 */
+        .option-btn {
+            transition: transform 0.16s ease, background-color 0.2s ease, border-color 0.2s ease;
+        }
+        .option-btn:active {
+            transform: scale(0.985);
+        }
+
+        /* 3:4 备忘录结果卡片比例保障 */
+        .memo-poster-ratio {
+            aspect-ratio: 3 / 4;
+        }
+
+        /* 自定义细滚动条 */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(44, 42, 41, 0.15);
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex justify-center items-start sm:items-center sm:py-6 font-sans antialiased selection:bg-stone-200">
+
+    <!-- 移动端主容器：桌面端居中 max-w-[480px]，手机端全屏铺满 -->
+    <main id="app-container" class="w-full max-w-[480px] min-h-screen sm:min-h-[820px] bg-[#F7F6F2] sm:rounded-[32px] sm:shadow-soft relative flex flex-col justify-between overflow-x-hidden">
+
+        <!-- 顶部轻量状态栏 -->
+        <header class="w-full px-6 pt-5 pb-2 flex items-center justify-between text-xs text-[#7A7571]">
+            <span class="tracking-wider font-medium">心动小测试</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/70 text-[#8C8681] border border-stone-200/50 text-[11px]">
+                测完解锁全套档案
+            </span>
+        </header>
+
+        <!-- ================= 视图 1：开始页 ================= -->
+        <section id="view-landing" class="view-section active flex-1 flex-col justify-between px-6 pt-4 pb-8">
+            <div class="flex-1 flex flex-col justify-center">
+                <!-- 备忘录风主卡片 -->
+                <div class="bg-white rounded-[28px] p-7 sm:p-8 shadow-card border border-stone-200/50 relative overflow-hidden">
+                    <!-- 装饰性备忘录小圆点 -->
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-[#E8D5C4]"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-[#D9E2EC]"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-[#DCE8DF]"></span>
+                        </div>
+                        <span class="text-[11px] font-mono tracking-widest text-[#A8A29E]">NO.2026-DESTINY</span>
+                    </div>
+
+                    <div class="inline-block px-3 py-1 rounded-full bg-[#F7F6F2] text-[#7A7571] text-xs font-medium mb-4">
+                        20道情景推演 · 约2分钟 · 10款隐藏正缘档案
+                    </div>
+
+                    <h1 class="text-[26px] sm:text-[28px] font-bold leading-[1.35] tracking-tight text-[#2C2A29] mb-4">
+                        测测你正缘长啥样，<br>这波真的会撞上吗
+                    </h1>
+
+                    <p class="text-[15px] leading-relaxed text-[#6E6965] mb-6">
+                        20道日常潜意识切片，不剧透结局。凭第一直觉选完，系统将为你解锁专属于你的正缘外貌与性格画像。
+                    </p>
+
+                    <!-- 神秘盲盒档案卡（不剧透具体标签，拉满好奇心） -->
+                    <div class="rounded-2xl bg-[#F7F6F2] border border-dashed border-stone-300/90 p-4 mb-7 flex items-center gap-3.5">
+                        <div class="w-12 h-12 rounded-2xl bg-white shadow-xs flex items-center justify-center shrink-0 text-lg font-bold text-[#2C2A29]">
+                            ？
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-xs font-bold text-[#2C2A29]">待解锁 · 你的命中正缘档案</span>
+                                <span class="px-1.5 py-0.5 rounded bg-stone-200/70 text-[10px] text-[#57534E]">已加密</span>
+                            </div>
+                            <p class="text-xs text-[#7A7571] truncate">
+                                外貌神态 / 穿搭气质 / 灵魂契合度 · 完成20题揭晓
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 开始按钮 -->
+                    <button type="button" onclick="startQuiz()" class="w-full py-4 rounded-2xl bg-[#2C2A29] hover:bg-[#3F3C3A] text-white font-semibold text-[16px] tracking-wide shadow-sm transition transform active:scale-[0.98] flex items-center justify-center gap-2">
+                        <span>开启 20 题潜意识推演</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 底部标语 -->
+            <footer class="pt-6 text-center">
+                <p class="text-[11px] text-[#A8A29E] tracking-widest">图个乐</p>
+            </footer>
+        </section>
+
+        <!-- ================= 视图 2：答题页 ================= -->
+        <section id="view-quiz" class="view-section flex-1 flex-col justify-between px-6 pt-3 pb-8">
+            <div>
+                <!-- 进度条与题号 -->
+                <div class="mb-6">
+                    <div class="flex items-center justify-between text-xs font-medium text-[#7A7571] mb-2.5">
+                        <span id="question-counter" class="text-sm font-bold text-[#2C2A29]">1 / 20</span>
+                        <span id="progress-hint">凭第一直觉选最准哦</span>
+                    </div>
+                    <div class="w-full h-2 bg-stone-200/70 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="h-full bg-[#2C2A29] rounded-full transition-all duration-300 ease-out" style="width: 5%;"></div>
+                    </div>
+                </div>
+
+                <!-- 题目卡片 -->
+                <div id="question-card" class="bg-white rounded-[26px] p-6 sm:p-7 shadow-card border border-stone-200/50 transition-opacity duration-200">
+                    <h2 id="question-text" class="text-[19px] sm:text-[20px] font-bold leading-[1.45] text-[#2C2A29] mb-6">
+                        <!-- 动态注入题干 -->
+                    </h2>
+
+                    <!-- 四个选项列表 -->
+                    <div id="options-container" class="space-y-3">
+                        <!-- 动态注入选项按钮 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 底部操作栏：上一题 + 标语 -->
+            <div class="pt-6 flex flex-col items-center gap-4">
+                <div class="w-full flex items-center justify-between min-h-[40px]">
+                    <button id="prev-btn" type="button" onclick="prevQuestion()" class="px-4 py-2.5 rounded-xl text-sm font-medium text-[#7A7571] hover:text-[#2C2A29] hover:bg-white/80 transition flex items-center gap-1.5 invisible">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
+                        </svg>
+                        <span>上一题</span>
+                    </button>
+                    <span class="text-xs text-[#A8A29E]">选好自动跳下一题</span>
+                </div>
+                <p class="text-[11px] text-[#A8A29E] tracking-widest">图个乐</p>
+            </div>
+        </section>
+
+        <!-- ================= 视图 3：结果页 ================= -->
+        <section id="view-result" class="view-section flex-1 flex-col justify-between px-5 pt-2 pb-8">
+            <div class="space-y-4">
+                <!-- 上半部分：3:4 纯色低饱和手机备忘录风结果海报卡 -->
+                <div id="result-memo-card" class="memo-poster-ratio w-full rounded-[26px] px-6 py-7 flex flex-col justify-between items-center text-center shadow-card transition-colors duration-300 relative overflow-hidden">
+                    
+                    <!-- 顶部：专属精致 SVG 人物插画头像框 -->
+                    <div class="w-full flex flex-col items-center pt-1">
+                        <div id="res-illustration-box" class="w-36 h-36 sm:w-40 sm:h-40 rounded-[32px] bg-white/85 backdrop-blur-xs shadow-sm border-2 border-white flex items-center justify-center overflow-hidden">
+                            <!-- 动态注入专属定制半身人物 SVG -->
+                        </div>
+                    </div>
+
+                    <!-- 中间：正缘称号 + 灵魂判词 + 3个核心特质标签 -->
+                    <div class="w-full my-auto flex flex-col items-center py-2">
+                        <h2 id="res-title" class="text-[25px] sm:text-[28px] font-bold tracking-tight text-[#2C2A29] leading-tight mb-2.5">
+                            <!-- 结果名 -->
+                        </h2>
+
+                        <!-- 3个核心特质标签 -->
+                        <div id="res-keywords" class="flex flex-wrap justify-center gap-1.5 mb-3.5">
+                            <!-- 动态注入标签 -->
+                        </div>
+
+                        <p id="res-verdict" class="text-[14px] sm:text-[15px] leading-[1.6] text-[#44403C] font-medium max-w-[94%] mb-4">
+                            <!-- 一句话灵魂判词 -->
+                        </p>
+
+                        <!-- 极简分隔线与朋友圈金句 -->
+                        <div class="w-8 h-[1.5px] bg-[#2C2A29]/15 rounded-full mb-3.5"></div>
+
+                        <p id="res-quote" class="text-[13px] sm:text-[14px] leading-[1.55] text-[#57534E] font-medium max-w-[92%]">
+                            <!-- 金句 -->
+                        </p>
+                    </div>
+
+                    <!-- 底部极小字：图个乐 -->
+                    <div class="w-full">
+                        <span class="text-[11px] text-[#2C2A29]/35 tracking-widest">图个乐</span>
+                    </div>
+                </div>
+
+                <!-- 下半部分：深度推演报告三大模块 -->
+                <!-- 模块一：你的恋爱人格底色分析 -->
+                <div class="bg-white rounded-[24px] p-6 shadow-card border border-stone-200/50 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="w-1.5 h-4 rounded-full bg-[#2C2A29]"></span>
+                            <h3 class="text-[15px] font-bold text-[#2C2A29]">01 · 你的恋爱人格底色分析</h3>
+                        </div>
+                        <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#F7F6F2] text-[#7A7571]">选择倾向推演</span>
+                    </div>
+                    <p id="res-self-analysis" class="text-[14px] leading-[1.75] text-[#4A4643] text-justify">
+                        <!-- 动态注入约150字测试者性格与情感需求剖析 -->
+                    </p>
+                </div>
+
+                <!-- 模块二：为什么你的正缘长这样 -->
+                <div class="bg-white rounded-[24px] p-6 shadow-card border border-stone-200/50 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="w-1.5 h-4 rounded-full bg-[#2C2A29]"></span>
+                            <h3 class="text-[15px] font-bold text-[#2C2A29]">02 · 为什么你的正缘长这样</h3>
+                        </div>
+                        <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#F7F6F2] text-[#7A7571]">双向契合逻辑</span>
+                    </div>
+                    <p id="res-match-logic" class="text-[14px] leading-[1.75] text-[#4A4643] text-justify">
+                        <!-- 动态注入约150字因果推演 -->
+                    </p>
+                </div>
+
+                <!-- 模块三：正缘外貌与相处细节画像 -->
+                <div class="bg-white rounded-[24px] p-6 shadow-card border border-stone-200/50 space-y-3.5">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="w-1.5 h-4 rounded-full bg-[#2C2A29]"></span>
+                            <h3 class="text-[15px] font-bold text-[#2C2A29]">03 · 正缘外貌与相处细节画像</h3>
+                        </div>
+                        <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#F7F6F2] text-[#7A7571]">具象场景还原</span>
+                    </div>
+                    <div id="res-appearance-details" class="space-y-2.5 text-[14px] leading-[1.75] text-[#4A4643]">
+                        <!-- 动态注入外貌神态、穿搭及相处名场面 -->
+                    </div>
+
+                    <div class="pt-2">
+                        <p id="res-tag-prompt" class="text-[13.5px] font-medium text-[#57534E] bg-[#F7F6F2] px-4 py-3 rounded-2xl leading-relaxed">
+                            <!-- @谁一起测 互动引导 -->
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 互动按钮组 -->
+                <div class="space-y-2.5 pt-1">
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <button type="button" onclick="downloadResultImage()" class="py-3.5 px-4 rounded-2xl bg-[#2C2A29] hover:bg-[#3F3C3A] text-white text-sm font-semibold shadow-sm transition active:scale-[0.98] flex items-center justify-center gap-1.5">
+                            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
+                            </svg>
+                            <span>保存结果海报图</span>
+                        </button>
+
+                        <button type="button" onclick="copyResultText()" class="py-3.5 px-4 rounded-2xl bg-white hover:bg-stone-50 text-[#2C2A29] border border-stone-200/80 text-sm font-semibold transition active:scale-[0.98] flex items-center justify-center gap-1.5">
+                            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75"/>
+                            </svg>
+                            <span>复制深度分析文案</span>
+                        </button>
+                    </div>
+
+                    <button type="button" onclick="restartQuiz()" class="w-full py-3.5 rounded-2xl bg-transparent hover:bg-white/60 text-[#7A7571] hover:text-[#2C2A29] text-sm font-medium transition active:scale-[0.98]">
+                        重新测试
+                    </button>
+
+                    <!-- 测完才解锁的全部图鉴入口 -->
+                    <button type="button" onclick="openGalleryModal()" class="w-full py-3.5 rounded-2xl bg-white/80 hover:bg-white text-[#57534E] border border-stone-200/70 text-sm font-medium transition active:scale-[0.98] flex items-center justify-center gap-1.5">
+                        <span>✨ 已解锁 · 查看全部 10 种正缘图鉴</span>
+                    </button>
+                </div>
+            </div>
+
+            <footer class="pt-6 text-center">
+                <p class="text-[11px] text-[#A8A29E] tracking-widest">图个乐</p>
+            </footer>
+        </section>
+
+    </main>
+
+    <!-- ================= 10种正缘图鉴弹窗 ================= -->
+    <div id="gallery-modal" class="fixed inset-0 z-40 hidden items-end sm:items-center justify-center bg-black/35 backdrop-blur-[2px] p-0 sm:p-4">
+        <div class="w-full max-w-[480px] max-h-[86vh] bg-[#F7F6F2] rounded-t-[28px] sm:rounded-[28px] flex flex-col overflow-hidden shadow-xl animate-[fadeSlideUp_0.25s_ease-out]">
+            <div class="px-6 py-4 bg-white border-b border-stone-200/60 flex items-center justify-between">
+                <div>
+                    <h3 class="text-base font-bold text-[#2C2A29]">全部 10 种正缘图鉴</h3>
+                    <p class="text-xs text-[#7A7571] mt-0.5">点击任意卡片可直接预览该结果页</p>
+                </div>
+                <button type="button" onclick="closeGalleryModal()" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 flex items-center justify-center text-[#57534E] transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="gallery-list" class="p-5 overflow-y-auto space-y-3">
+                <!-- 动态注入10个结果预览入口 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 导出图片预览弹窗（兼容微信/小红书长按保存） ================= -->
+    <div id="image-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-[2px] p-5">
+        <div class="w-full max-w-[360px] bg-white rounded-[26px] p-5 flex flex-col items-center text-center shadow-2xl">
+            <p class="text-sm font-bold text-[#2C2A29] mb-1">长按下方图片即可保存到相册</p>
+            <p class="text-xs text-[#7A7571] mb-3.5">3:4 比例，可直接发小红书或朋友圈</p>
+            <img id="exported-img-preview" src="" alt="正缘结果图" class="w-full rounded-2xl shadow-sm border border-stone-100 mb-4">
+            <button type="button" onclick="closeImageModal()" class="w-full py-3 rounded-xl bg-[#2C2A29] text-white text-sm font-semibold active:scale-95 transition">
+                完成
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= 轻量提示气泡 (Toast) ================= -->
+    <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-opacity duration-200">
+        <div id="toast-message" class="px-4 py-2.5 rounded-full bg-[#2C2A29]/90 text-white text-xs font-medium shadow-lg whitespace-nowrap">
+            提示信息
+        </div>
+    </div>
+
+    <script>
+        /**
+         * 1. 专属定制高颜值小红书治愈手账风「正缘氛围意象插画库」（告别生硬人头，质感拉满）
+         */
+        const SVG_PORTRAITS = {
+            '阳光运动犬系正缘': `
+                <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                    <defs>
+                        <linearGradient id="bg-dog" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FFF5E6"/>
+                            <stop offset="100%" stop-color="#FFE1B8"/>
+                        </linearGradient>
+                        <linearGradient id="ball-grad" x1="20%" y1="20%" x2="80%" y2="80%">
+                            <stop offset="0%" stop-color="#FF9E6D"/>
+                            <stop offset="100%" stop-color="#E6643E"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="240" height="240" fill="url(#bg-dog)"/>
+                    <!-- 暖阳光晕 -->
+                    <circle cx="176" cy="64" r="38" fill="#FFD166" opacity="0.4"/>
+                    <circle cx="176" cy="64" r="22" fill="#FFE082" opacity="0.7"/>
+                    <!-- 地面投影 -->
+                    <ellipse cx="118" cy="184" rx="54" ry="11" fill="#E0A97B" opacity="0.35"/>
+                    <!-- 治愈系运动篮球 -->
+                    <circle cx="108" cy="134" r="46" fill="url(#ball-grad)"/>
+                    <path d="M62 134 Q108 134 154 134" stroke="#FFF3E6" stroke-width="3" fill="none" opacity="0.85"/>
+                    <path d="M108 88 Q108 134 108 180" stroke="#FFF3E6" stroke-width="3" fill="none" opacity="0.85"/>
+                    <path d="M74 102 Q102 134 74 166" stroke="#FFF3E6" stroke-width="3" fill="none" opacity="0.85"/>
+                    <path d="M142 102 Q114 134 142 166" stroke="#FFF3E6" stroke-width="3" fill="none" opacity="0.85"/>
+                    <!-- 柠檬气泡特饮 -->
+                    <rect x="142" y="114" width="38" height="62" rx="10" fill="#FFFFFF" opacity="0.9"/>
+                    <rect x="146" y="128" width="30" height="44" rx="7" fill="#FFE066" opacity="0.85"/>
+                    <circle cx="156" cy="144" r="3" fill="#FFFFFF" opacity="0.8"/>
+                    <circle cx="166" cy="156" r="2.5" fill="#FFFFFF" opacity="0.8"/>
+                    <path d="M164 114 L174 88" stroke="#FF7B54" stroke-width="4" stroke-linecap="round"/>
+                    <!-- 闪亮小星星 -->
+                    <path d="M64 76 L67 84 L75 87 L67 90 L64 98 L61 90 L53 87 L61 84 Z" fill="#FF9E6D"/>
+                </svg>`,
+            '清冷禁欲智性恋正缘': `
+                <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                    <defs>
+                        <linearGradient id="bg-cold" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#EEF3F8"/>
+                            <stop offset="100%" stop-color="#D5E0EC"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="240" height="240" fill="url(#bg-cold)"/>
+                    <!-- 月光与极简建筑光影 -->
+                    <circle cx="64" cy="64" r="28" fill="#FFFFFF" opacity="0.6"/>
+                    <ellipse cx="120" cy="186" rx="64" ry="10" fill="#94A3B8" opacity="0.28"/>
+                    <!-- 精装外文书本叠放 -->
+                    <rect x="58" y="150" width="124" height="22" rx="6" fill="#334155"/>
+                    <rect x="64" y="154" width="112" height="14" rx="4" fill="#F8FAFC"/>
+                    <rect x="68" y="128" width="104" height="22" rx="6" fill="#475569"/>
+                    <rect x="74" y="132" width="92" height="14" rx="4" fill="#F1F5F9"/>
+                    <!-- 极简玻璃冰美式咖啡杯 -->
+                    <path d="M96 84 L144 84 L138 128 L102 128 Z" fill="rgba(255,255,255,0.85)" stroke="#94A3B8" stroke-width="2"/>
+                    <path d="M99 98 L141 98 L138 128 L102 128 Z" fill="#4A3525" opacity="0.85"/>
+                    <rect x="107" y="92" width="12" height="12" rx="3" fill="#FFFFFF" opacity="0.65" transform="rotate(-12 113 98)"/>
+                    <rect x="122" y="95" width="10" height="10" rx="2" fill="#FFFFFF" opacity="0.55" transform="rotate(15 127 100)"/>
+                    <!-- 银丝细框眼镜斜搭 -->
+                    <circle cx="96" cy="166" r="15" stroke="#1E293B" stroke-width="2.5" fill="rgba(255,255,255,0.3)"/>
+                    <circle cx="136" cy="166" r="15" stroke="#1E293B" stroke-width="2.5" fill="rgba(255,255,255,0.3)"/>
+                    <path d="M111 165 Q116 161 121 165" stroke="#1E293B" stroke-width="2.5" fill="none"/>
+                </svg>`,
+            '慵懒松弛文艺系正缘': `
+                <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                    <defs>
+                        <linearGradient id="bg-art" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#EEF6F0"/>
+                            <stop offset="100%" stop-color="#D4E6DA"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="240" height="240" fill="url(#bg-art)"/>
+                    <!-- 晨光窗影与尤加利叶 -->
+                    <circle cx="174" cy="66" r="30" fill="#FFFDF7" opacity="0.7"/>
+                    <path d="M168 110 Q188 86 184 62" stroke="#6B9078" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                    <ellipse cx="176" cy="84" rx="10" ry="6" fill="#8FB399" transform="rotate(-30 176 84)"/>
+                    <ellipse cx="188" cy="74" rx="9" ry="5" fill="#A3C4AC" transform="rotate(25 188 74)"/>
+                    <ellipse cx="120" cy="186" rx="58" ry="10" fill="#8FB399" opacity="0.3"/>
+                    <!-- 复古黑胶唱片 -->
+                    <circle cx="114" cy="126" r="48" fill="#2D3134"/>
+                    <circle cx="114" cy="126" r="36" stroke="#495057" stroke-width="1.5" fill="none"/>
+                    <circle cx="114" cy="126" r="26" stroke="#495057" stroke-width="1.5" fill="none"/>
+                    <circle cx="114" cy="126" r="16" fill="#D4A373"/>
+                    <circle cx="114" cy="126" r="4" fill="#FAF7F0"/>
+                    <!-- 复古头戴式耳机轻靠 -->
+                    <path d="M84 148 C84 106, 156 106, 156 148" stroke="#8D6E63" stroke-width="6" fill="none" stroke-linecap="round"/>
+                    <rect x="74" y="142" width="18" height="28" rx="9" fill="#C68B59"/>
+                    <rect x="148" y="142" width="18" height="28" rx="9" fill="#C68B59"/>
+                </svg>`,
+            '脑洞抽象快乐搭子正缘': `
+                <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                    <defs>
+                        <linearGradient id="bg-fun" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FFFBEB"/>
+                            <stop offset="100%" stop-color="#FDE68A"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="240" height="240" fill="url(#bg-fun)"/>
+                    <!-- 趣味涂鸦闪电与星星 -->
+                    <path d="M62 58 L52 78 L64 78 L58 96 L76 72 L64 72 Z" fill="#3B82F6"/>
+                    <path d="M178 56 L182 66 L192 68 L182 72 L178 82 L174 72 L164 68 L174 66 Z" fill="#EC4899"/>
+                    <ellipse cx="120" cy="186" rx="56" ry="10" fill="#F59E0B" opacity="0.28"/>
+                    <!-- 潮酷融化笑脸徽章 -->
+                    <circle cx="116" cy="124" r="46" fill="#FACC15" stroke="#1E293B" stroke-width="3.5"/>
+                    <ellipse cx="101" cy="112" rx="4.5" ry="7" fill="#1E293B"/>
+                    <ellipse cx="131" cy="112" rx="4.5" ry="7" fill="#1E293B"/>
+                    <path d="M94 128 Q116 150 138 128" stroke="#1E293B" stroke-width="4" stroke-linecap="round" fill="none"/>
+                    <!-- 复古掌上游戏机小配件 -->
+                    <rect x="134" y="128" width="44" height="54" rx="10" fill="#60A5FA" stroke="#1E293B" stroke-width="3"/>
+                    <rect x="142" y="136" width="28" height="20" rx="4" fill="#DCFCE7"/>
+                    <circle cx="148" cy="168" r="3.5" fill="#FACC15"/>
+                    <circle cx="164" cy="166" r="3" fill="#F43F5E"/>
+                </svg>`,
+            '成熟克制引路人型正缘': `
+                <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                    <defs>
+                        <linearGradient id="bg-mentor" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#E6EAF0"/>
+                            <stop offset="100%" stop-color="#CBD5E1"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="240" height="240" fill="url(#bg-mentor)"/>
+                    <circle cx="120" cy="120" r="82" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.55"/>
+                    <ellipse cx="120" cy="186" rx="56" ry="10" fill="#64748B" opacity="0.28"/>
+                    <!-- 经典机械腕表表盘意象 -->
+                    <rect x="104" y="58" width="32" height="124" rx="8" fill="#334155"/>
+                    <circle cx="120" cy="120" r="42" fill="#1E293B" stroke="#94A3B8" stroke-width="4"/>
+                    <circle cx="120" cy="120" r="34" fill="#F8FAFC"/>
+                    <!-- 刻度与指针 -->
+                    <line x1="120" y1="92" x2="120" y2="98" stroke="#1E293B" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="120" y1="142" x2="120" y2="148" stroke="#1E293B" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="92" y1="120" x2="98" y2="120" stroke="#1E293B" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="142" y1="120" x2="148" y2="120" stroke="#1E293B" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="120" y1="120" x2="120" y2="100" stroke="#1E293B" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="120" y1="120" x2="136" y2="128" stroke="#D97706" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="120" cy="120" r="3.5" fill="#1E293B"/>
+                </svg>`,
+            '暗戳戳黏人小甜豆正缘': `
+                <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                    <defs>
+                        <linearGradient id="bg-sweet" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FFF0ED"/>
+                            <stop offset="100%" stop-color="#FAD4CC"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="240" height="240" fill="url(#bg-sweet)"/>
+                    <!-- 漂浮小爱心 -->
+                    <path d="M178 66 C178 58, 166 58, 166 66 C166 58, 154 58, 154 66 C154 76, 166 84, 166 84 C166 84, 178 76, 178 66 Z" fill="#FB7185" opacity="0.75"/>
+                    <path d="M68 82 C68 77, 60 77, 60 82 C60 77, 52 77, 52 82 C52 89, 60 94, 60 94 C60 94, 68 89, 68 82 Z" fill="#F472B6" opacity="0.55"/>
+                    <ellipse cx="120" cy="186" rx="56" ry="10" fill="#E57E78" opacity="0.28"/>
+                    <!-- 软萌蜜桃小熊玩偶与草莓蛋糕 -->
+                    <circle cx="92" cy="96" r="14" fill="#D4A373"/>
+                    <circle cx="148" cy="96" r="14" fill="#D4A373"/>
+                    <circle cx="92" cy="96" r="7" fill="#FAEDCD"/>
+                    <circle cx="148" cy="96" r="7" fill="#FAEDCD"/>
+                    <ellipse cx="120" cy="130" rx="44" ry="38" fill="#E2B487"/>
+                    <ellipse cx="120" cy="138" rx="18" ry="13" fill="#FFF8F0"/>
+                    <circle cx="104" cy="124" r="4" fill="#3B261D"/>
+                    <circle cx="136" cy="124" r="4" fill="#3B261D"/>
+                    <ellipse cx="96" cy="134" rx="7" ry="4" fill="#FB7185" opacity="0.5"/>
+                    <ellipse cx="144" cy="134" rx="7" ry="4" fill="#FB7185" opacity="0.5"/>
+                    <ellipse cx="120" cy="134" rx="4.5" ry="3" fill="#5C3A21"/>
+                    <path d="M114 140 Q120 145 126 140" stroke="#5C3A21" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+                    <!-- 胸前抱着一颗大草莓 -->
+                    <path d="M120 148 C108 148, 106 164, 120 174 C134 164, 132 148, 120 148 Z" fill="#F43F5E"/>
+                    <path d="M112 149 L120 154 L128 149 L120 144 Z" fill="#4ADE80"/>
+                </svg>`,
+            '温柔治愈居家型正缘': `
+                <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                    <defs>
+                        <linearGradient id="bg-home" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FDF8F2"/>
+                            <stop offset="100%" stop-color="#F2E2CE"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="240" height="240" fill="url(#bg-home)"/>
+                    <ellipse cx="120" cy="186" rx="58" ry="10" fill="#D4A373" opacity="0.3"/>
+                    <!-- 袅袅暖茶热气 -->
+                    <path d="M104 94 Q98 82 106 72 Q112 62 106 52" stroke="#D4A373" stroke-width="2.8" stroke-linecap="round" fill="none" opacity="0.65"/>
+                    <path d="M124 90 Q118 78 126 68 Q132 58 126 48" stroke="#D4A373" stroke-width="2.8" stroke-linecap="round" fill="none" opacity="0.5"/>
+                    <!-- 陶瓷马克杯与刚烤好的牛角可颂 -->
+                    <path d="M150 118 C168 118, 168 148, 150 148" stroke="#C68B59" stroke-width="7" fill="none" stroke-linecap="round"/>
+                    <rect x="84" y="106" width="68" height="62" rx="16" fill="#FFFFFF" stroke="#E6CCB2" stroke-width="2.5"/>
+                    <path d="M88 122 L148 122 L148 152 C148 160, 142 164, 134 164 L102 164 C94 164, 88 160, 88 152 Z" fill="#DDB892" opacity="0.45"/>
+                    <!-- 可爱小太阳花瓣装饰 -->
+                    <circle cx="118" cy="140" r="8" fill="#F59E0B"/>
+                    <circle cx="118" cy="140" r="4" fill="#FFFBEB"/>
+                </svg>`,
+            '野性不羁酷盖型正缘': `
+                <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                    <defs>
+                        <linearGradient id="bg-cool" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#F1F0F5"/>
+                            <stop offset="100%" stop-color="#DDD9E8"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="240" height="240" fill="url(#bg-cool)"/>
+                    <!-- 银色星芒 -->
+                    <polygon points="180,54 183,64 193,67 183,70 180,80 177,70 167,67 177,64" fill="#6366F1" opacity="0.65"/>
+                    <polygon points="62,72 64,78 70,80 64,82 62,88 60,82 54,80 60,78" fill="#8B5CF6" opacity="0.55"/>
+                    <ellipse cx="120" cy="186" rx="58" ry="10" fill="#71717A" opacity="0.28"/>
+                    <!-- 酷飒机车头盔与护目镜 -->
+                    <path d="M72 134 C72 86, 168 86, 168 134 C168 162, 150 174, 120 174 C90 174, 72 162, 72 134 Z" fill="#18181B"/>
+                    <path d="M84 124 Q120 116 158 124 L152 148 Q120 156 88 148 Z" fill="#6366F1" opacity="0.85"/>
+                    <path d="M92 128 L114 144" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" opacity="0.6"/>
+                    <path d="M104 126 L122 140" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+                </svg>`,
+            '斯文败类腹黑型正缘': `
+                <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                    <defs>
+                        <linearGradient id="bg-fox" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#F6EEF2"/>
+                            <stop offset="100%" stop-color="#E6D5DF"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="240" height="240" fill="url(#bg-fox)"/>
+                    <ellipse cx="120" cy="186" rx="54" ry="10" fill="#9D174D" opacity="0.2"/>
+                    <!-- 高脚红酒杯与黑桃扑克意象 -->
+                    <rect x="122" y="88" width="52" height="72" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2" transform="rotate(12 148 124)"/>
+                    <path d="M148 112 C142 120, 138 124, 144 128 C146 129, 148 127, 148 127 C148 127, 150 129, 152 128 C158 124, 154 120, 148 112 Z" fill="#881337" transform="rotate(12 148 124)"/>
+                    <!-- 优雅高脚杯 -->
+                    <path d="M78 86 L122 86 L118 118 C116 132, 84 132, 82 118 Z" fill="rgba(255,255,255,0.85)" stroke="#94A3B8" stroke-width="2"/>
+                    <path d="M81 104 L119 104 L117 118 C115 130, 85 130, 83 118 Z" fill="#881337" opacity="0.88"/>
+                    <line x1="100" y1="129" x2="100" y2="172" stroke="#94A3B8" stroke-width="3"/>
+                    <ellipse cx="100" cy="173" rx="18" ry="4" fill="#94A3B8"/>
+                </svg>`,
+            '浪漫仪式感艺术家正缘': `
+                <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                    <defs>
+                        <linearGradient id="bg-artist" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#F5F3FF"/>
+                            <stop offset="100%" stop-color="#E4DEFA"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="240" height="240" fill="url(#bg-artist)"/>
+                    <!-- 星月光辉 -->
+                    <path d="M64 56 A14 14 0 1 0 76 76 A11 11 0 1 1 64 56 Z" fill="#8B5CF6" opacity="0.65"/>
+                    <circle cx="178" cy="68" r="3.5" fill="#A78BFA"/>
+                    <ellipse cx="120" cy="186" rx="56" ry="10" fill="#8B5CF6" opacity="0.22"/>
+                    <!-- 浪漫郁金香花束与火漆信封 -->
+                    <path d="M96 136 L120 176 L144 136 Z" fill="#DDD6FE" stroke="#8B5CF6" stroke-width="2"/>
+                    <!-- 三朵郁金香 -->
+                    <line x1="120" y1="136" x2="120" y2="96" stroke="#4ADE80" stroke-width="3"/>
+                    <path d="M108 96 C108 78, 132 78, 132 96 C132 106, 108 106, 108 96 Z" fill="#F472B6"/>
+                    <line x1="112" y1="136" x2="98" y2="106" stroke="#4ADE80" stroke-width="3"/>
+                    <circle cx="98" cy="102" r="10" fill="#A78BFA"/>
+                    <line x1="128" y1="136" x2="142" y2="106" stroke="#4ADE80" stroke-width="3"/>
+                    <circle cx="142" cy="102" r="10" fill="#FB7185"/>
+                    <!-- 丝带蝴蝶结 -->
+                    <circle cx="120" cy="146" r="5" fill="#EC4899"/>
+                    <path d="M120 146 L108 156 M120 146 L132 156" stroke="#EC4899" stroke-width="3" stroke-linecap="round"/>
+                </svg>`
+        };
+
+        /**
+         * 2. 核心数据配置：10种全覆盖正缘档案与深度推演报告
+         */
+        const RESULTS_DATA = {
+            '阳光运动犬系正缘': {
+                name: '阳光运动犬系正缘',
+                bgColor: '#FAF2E6',
+                keywords: ['热忱直球', '生命力满格', '行动派偏爱'],
+                verdict: '永远带着刚晒过太阳的暖意奔向你，爱意坦荡到从不让你猜。',
+                quote: '真正的喜欢是藏不住的，连跑向你的脚步都带着风。',
+                selfAnalysis: '你在感情和生活里其实是个容易「想太多」的人。表面上看起来好相处、挺随和，但内心戏很足，遇到模糊不清的态度容易内耗、反复琢磨细节。你真正渴望的不是复杂的情感博弈，而是一份不用费力揣测、明明白白的安全感，以及能把你从胡思乱想里拉出来的生命力。',
+                matchLogic: '正因为你偶尔会陷入情绪内耗，热忱直球的「阳光运动犬系」才是你的天生正缘。ta没有弯弯绕绕的心思，喜欢你就直接说、想见你就立刻出发，用近乎满格的行动力直接击碎你所有的不安与犹豫。ta身上源源不断的积极能量，就像晴天里的一阵穿堂风，能把你心底的小阴霾瞬间吹散。',
+                appearanceDetails: [
+                    '外貌神态：眉眼舒展干净，笑起来眼角有弯弯的弧度，皮肤带着健康的光泽感，眼神永远清亮有神，看你的时候眼睛里像藏着小太阳。',
+                    '穿搭风格：偏爱清爽利落的运动卫衣、连帽衫、白T恤配工装裤或干净的板鞋，身上总有一股好闻的洗衣液混着阳光的味道。',
+                    '相处名场面：你随口提了一句想吃某家店，半小时后ta已经拎着热乎乎的袋子出现在楼下，笑着挠头说「刚好路过，快趁热吃」。'
+                ],
+                tagPrompt: '@你身边那个最需要被阳光治愈的朋友，测测ta的正缘是不是这款。'
+            },
+            '清冷禁欲智性恋正缘': {
+                name: '清冷禁欲智性恋正缘',
+                bgColor: '#EBF0F5',
+                keywords: ['高智克制', '疏离反差', '精神博弈'],
+                verdict: '对外人礼貌又疏离，唯独对你放下防备，眼神拉丝到犯规。',
+                quote: '世人皆爱热烈的玫瑰，我独爱他克制之下为你失控的瞬间。',
+                selfAnalysis: '你是一个精神世界非常独立、对肤浅的套路毫无兴趣的人。相比起廉价的甜言蜜语，你更看重灵魂层面的同频与尊重。你在亲密关系中慢热且保持着体面的边界感，不会轻易交出真心，一旦爱上却极度专注，渴望遇到一个能与你势均力敌、在思想上产生深度共鸣的伴侣。',
+                matchLogic: '浮夸的追求者只会让你觉得聒噪，唯有「清冷禁欲智性恋」能真正走进你的心里。ta情绪稳定、逻辑清晰，自带一种不被世俗喧嚣打扰的清隽气场。你们之间不需要靠刻意迎合来维系感情，一个眼神就能懂彼此的梗；而当一向克制的ta只对你露出柔软与偏爱时，那种极致反差感会让你彻底沦陷。',
+                appearanceDetails: [
+                    '外貌神态：五官轮廓利落分明，常戴一副细框金属眼镜，气质冷白清隽。平时神情淡然略带疏离，但认真听你说话时眼神格外深邃专注。',
+                    '穿搭风格：钟爱质感极佳的纯色衬衫、高领针织衫、垂感西裤或极简风腕表，穿搭永远干净整洁、克制而高级。',
+                    '相处名场面：在嘈杂的聚会里ta一直安静话少，却在桌下悄悄扣住你的手指，低声问你「累不累，要不要先回家」。'
+                ],
+                tagPrompt: '@你身边那个对颜值和智商都有高要求的朋友，快拉ta来测正缘。'
+            },
+            '慵懒松弛文艺系正缘': {
+                name: '慵懒松弛文艺系正缘',
+                bgColor: '#EAF2EC',
+                keywords: ['慢热温柔', '浪漫氛围', '精神同频'],
+                verdict: '不催你赶路，也不急着要答案，只陪你在晚风里慢慢浪费时间。',
+                quote: '爱不是匆忙的赶路，而是有人愿意陪你停下来看一场日落。',
+                selfAnalysis: '你的内心敏感而细腻，对生活中的美感、氛围和情绪流动有着极高的感知力。快节奏的社交与功利化的催促常让你感到疲惫，你在亲密关系里最怕被强迫、被说教，真正需要的是一段毫无压迫感的「呼吸感恋爱」——哪怕各自安静待着，空气里也是温柔且自在的。',
+                matchLogic: '「慵懒松弛文艺系正缘」与你拥有完全一致的生命节拍。ta从不给你制造焦虑，也懂得尊重你每一个奇奇怪怪的灵感与发呆时刻。ta能接住你深夜突然冒出来的文艺感慨，也能把平淡的买菜、散步过成胶片电影里的浪漫桥段，让你在关系里彻底卸下紧绷的盔甲。',
+                appearanceDetails: [
+                    '外貌神态：头发带着自然的微卷弧度，眉眼柔和没有攻击性，说话语速不紧不慢，声线温润好听，自带一种旧电影般的文艺滤镜。',
+                    '穿搭风格：偏爱棉麻衬衫、宽松针织开衫、复古帆布包，脖子上常挂着头戴式耳机，手指修长，喜欢翻纸质书或拍胶片。',
+                    '相处名场面：下雨的周末下午，你们一人戴一只耳机窝在沙发里听同一张老唱片，谁也不说话，却觉得这一刻胜过千言万语。'
+                ],
+                tagPrompt: '@那个总想逃离内卷、向往慢生活的朋友，来看看你的正缘长啥样。'
+            },
+            '脑洞抽象快乐搭子正缘': {
+                name: '脑洞抽象快乐搭子正缘',
+                bgColor: '#FBF6DF',
+                keywords: ['古灵精怪', '爆笑同频', '鲜活自由'],
+                verdict: '脑洞比银河还大，跟你凑一块儿连呼吸都能笑出鹅叫。',
+                quote: '最好的心动，是笑得前仰后合时突然发现：这辈子就是ta了。',
+                selfAnalysis: '你骨子里藏着一颗拒绝无聊、向往自由的灵魂。你讨厌一成不变的规矩和沉闷的说教，在感情里最怕「相敬如宾却无话可说」。对你而言，伴侣首先必须是全天下最合拍的「玩伴」，能接住你突如其来的抽象脑洞和冷笑话，陪你把平淡的日子折腾出花样。',
+                matchLogic: '一本正经的人会让你觉得束缚，只有「脑洞抽象快乐搭子」能与你双向奔赴。ta古灵精怪、毫无偶像包袱，永远有源源不断的新鲜点子。无论你抛出多离谱的梗，ta都能在零点一秒内完美接住并升级，把生活中的小摩擦变成捧腹大笑的段子，让你每天都活得鲜活痛快。',
+                appearanceDetails: [
+                    '外貌神态：表情极其生动丰富，眼神灵动狡黠，笑起来毫无顾忌，自带一种「随时准备干票大的」少年顽皮感，感染力极强。',
+                    '穿搭风格：喜欢亮眼撞色卫衣、潮酷工装外套、趣味印花T恤或个性配饰，穿搭不拘一格，怎么舒服怎么酷就怎么来。',
+                    '相处名场面：两个人半夜在街头为了「路边的石墩子像不像某种生物」一本正经地辩论十分钟，最后双双在路灯下笑到蹲地。'
+                ],
+                tagPrompt: '@你那个一见面就笑到停不下来的抽象搭子，快拉ta来测测看。'
+            },
+            '成熟克制引路人型正缘': {
+                name: '成熟克制引路人型正缘',
+                bgColor: '#ECEEF2',
+                keywords: ['沉稳托底', '情绪强大', '靠谱笃定'],
+                verdict: '话不多但句句有回响，永远站在你身后替你挡住所有风雨。',
+                quote: '所谓正缘，不过是无论发生什么，都有人在你身后稳稳接住。',
+                selfAnalysis: '你在外人面前往往表现得很懂事、能扛事，习惯了自己消化委屈和压力，很少轻易向别人示弱。但其实你内心深处也会觉得累，渴望有一个比你更沉稳、更有远见的人出现，让你不用再时刻保持警惕，可以安心地做回一个被照顾、被偏爱的小孩。',
+                matchLogic: '情绪化的伴侣只会消耗你的精力，而「成熟克制引路人」正是为你量身定制的避风港。ta内核极度稳定，遇事不慌不忙，既有解决实际问题的能力，又有包容你小脾气的格局。ta不会用空洞的承诺画饼，而是默默把未来规划好，在每一个关键时刻给你最笃定的托举。',
+                appearanceDetails: [
+                    '外貌神态：眉眼深邃沉稳，站姿挺拔，眼神里透着阅历沉淀后的从容与笃定，说话条理清晰，只要看着ta就莫名觉得心安。',
+                    '穿搭风格：偏爱剪裁利落的羊绒大衣、质感西装外套、简约衬衫或经典款风衣，细节处尽显品味与稳重。',
+                    '相处名场面：当你因为工作或生活突发状况手足无措时，ta只说了一句「别急，交给我来处理」，十分钟后就把所有难题安排得井井有条。'
+                ],
+                tagPrompt: '@你身边那个平时最能扛事的朋友，测测ta命定的引路人何时出现。'
+            },
+            '暗戳戳黏人小甜豆正缘': {
+                name: '暗戳戳黏人小甜豆正缘',
+                bgColor: '#F9EAE6',
+                keywords: ['极致偏爱', '表面傲娇', '软萌撒娇'],
+                verdict: '在外人面前装得一本正经，一靠近你就秒变求抱抱的黏人精。',
+                quote: '被一个人毫无保留地需要和黏着，大概就是心动最甜的样子。',
+                selfAnalysis: '你的内心非常柔软、重感情，是一个典型的「付出型」恋人。你在感情里其实很需要确认感，喜欢看到对方因为你而开心、被你需要的样子。太冷漠或太独立的关系会让你觉得自己像个局外人，唯有高浓度的陪伴与双向的黏腻，才能填满你对亲密关系的全部期待。',
+                matchLogic: '「暗戳戳黏人小甜豆」简直是为你量身打造的甜度补给站。ta在别人面前可能还有点高冷傲娇，但只要一到你身边就彻底卸下防备，事事都要跟你报备、走哪都想牵着你的手。这种「全世界我只对你一个人撒娇」的极致偏爱，能精准满足你被需要、被全心全意放在心尖上的渴望。',
+                appearanceDetails: [
+                    '外貌神态：眉眼柔和圆润，睫毛长长的，眼神亮晶晶像小鹿一样清澈，一被你夸或者被你逗就容易耳尖微红，可爱到犯规。',
+                    '穿搭风格：喜欢软糯的毛绒针织衫、奶呼呼的卫衣、牛角扣外套等有亲和力的单品，让人一看就忍不住想揉揉头。',
+                    '相处名场面：明明嘴上说着「我才没有想你」，结果你刚坐下，ta就自然而然凑过来把下巴搁在你肩膀上蹭了蹭。'
+                ],
+                tagPrompt: '@那个嘴上说不黏人其实最爱撒娇的ta，快@出来一起测测正缘。'
+            },
+            '温柔治愈居家型正缘': {
+                name: '温柔治愈居家型正缘',
+                bgColor: '#F6EFE6',
+                keywords: ['烟火暖意', '细水长流', '情绪稳定'],
+                verdict: '把一屋两人三餐四季过成诗，有ta在的地方永远亮着一盏暖灯。',
+                quote: '最高级的浪漫，是下班回家时厨房里刚好飘出的那碗热汤香气。',
+                selfAnalysis: '比起轰轰烈烈却消耗精力的戏剧化爱情，你内心深处真正向往的是「落地生根的安稳」。你在外面应对社交和工作已经花光了力气，回到亲密关系里只想卸下所有防备，被一份不带评判、温温热热的烟火气包裹。',
+                matchLogic: '「温柔治愈居家型正缘」天生自带抚平焦虑的魔力。ta生活技能满点，懂得把琐碎的日子打理得井井有条，记性好到能记住你所有的忌口与小习惯。跟ta在一起不用担心忽冷忽热，ta会用日复一日的体贴把你重新养一遍。',
+                appearanceDetails: [
+                    '外貌神态：五官温和耐看，眉眼总是带着浅浅的笑意，声音轻柔有耐心，看人的眼神像晒暖的棉被一样让人想靠近。',
+                    '穿搭风格：偏爱燕麦色、米白、浅咖等大地色系的柔软针织毛衣与棉质家居服，干净清爽，毫无攻击性。',
+                    '相处名场面：周末赖床醒来，阳光刚好照在地板上，ta系着围裙端来刚烤好的吐司和热牛奶，笑着说「再睡五分钟就起来吃饭啦」。'
+                ],
+                tagPrompt: '@那个向往三餐四季、想拥有温暖小家的朋友，快来测测看。'
+            },
+            '野性不羁酷盖型正缘': {
+                name: '野性不羁酷盖型正缘',
+                bgColor: '#ECEAF4',
+                keywords: ['肆意张扬', '双向奔赴', '反差宠溺'],
+                verdict: '自带生人勿近的冷冽酷感，却甘愿为你收起锋芒、护你周全。',
+                quote: '对全世界都桀骜不驯，唯独在你面前俯首称臣。',
+                selfAnalysis: '你其实并不喜欢循规蹈矩的平庸生活，内心藏着对热烈、纯粹与偏爱的向往。你欣赏有态度、有棱角、活得足够自我的人，同时你也渴望在感情里体验那种「被坚定选择、被强势偏爱」的宿命感。',
+                matchLogic: '「野性不羁酷盖型正缘」身上那股不受束缚的张力最能击中你的心脏。ta敢爱敢恨、从不扭捏，喜欢你就会全宇宙宣告主权；外面风浪再大，ta也会第一时间把你护在身后，给你最直白也最滚烫的偏爱。',
+                appearanceDetails: [
+                    '外貌神态：轮廓分明有棱角，眼神锐利又带着几分漫不经心的慵懒，单边挑眉或勾唇一笑时自带电影主角般的张力。',
+                    '穿搭风格：钟爱机车皮衣、廓形工装夹克、银饰配饰或马丁靴，黑白灰撞色穿搭利落飒爽，回头率极高。',
+                    '相处名场面：有人让你受委屈时ta当场冷脸替你撑腰，转过头面对你却立刻放软语气问「吓到了没，走，带你去吃好吃的」。'
+                ],
+                tagPrompt: '@喜欢酷盖男友、想体验被强势偏爱的朋友，赶紧来测正缘。'
+            },
+            '斯文败类腹黑型正缘': {
+                name: '斯文败类腹黑型正缘',
+                bgColor: '#F3EAF0',
+                keywords: ['优雅钓系', '极限拉扯', '一眼看穿'],
+                verdict: '表面温文尔雅绅士十足，实则步步为营把你的小心思拿捏得死死的。',
+                quote: '他推了推眼镜笑着看你，那一刻你才发现自己早已落入他的温柔陷阱。',
+                selfAnalysis: '普通的直白追求很难让你产生心跳加速的感觉，你在感情里其实很吃「推拉感」和「掌控感」。你希望另一半既要有得体的礼貌与风度，又不能是个呆板的木头，最好能看穿你口是心非的小心思，偶尔逗逗你、撩拨你的心弦。',
+                matchLogic: '「斯文败类腹黑型正缘」简直是暧昧拉扯的天花板。ta外表斯文禁欲、礼貌克制，实则洞察力极强，总能精准踩中你的心动开关。ta擅长用看似不经意的细节撩拨你，让你在脸红心跳的同时又被ta照顾得无微不至。',
+                appearanceDetails: [
+                    '外貌神态：常戴细金丝边框眼镜，眼尾微挑带着若有似无的笑意，举手投足优雅从容，看你时眼神深邃又带着几分玩味。',
+                    '穿搭风格：偏爱暗纹衬衫、丝绒质感西装、经典腕表与定制大衣，衣冠楚楚却暗藏致命吸引力。',
+                    '相处名场面：你嘴硬说着「才没有吃醋」，ta低笑一声凑近你耳边，轻声说「嗯，是我吃醋了，行不行」。'
+                ],
+                tagPrompt: '@那个最吃「斯文眼镜杀」和极限拉扯的朋友，快拉ta来测。'
+            },
+            '浪漫仪式感艺术家正缘': {
+                name: '浪漫仪式感艺术家正缘',
+                bgColor: '#F0EEFA',
+                keywords: ['极致浪漫', '灵魂共鸣', '细节控'],
+                verdict: '把爱意藏进每一束花、每一封手写信和每一个为你定制的惊喜里。',
+                quote: '世俗的爱千篇一律，唯有他把你当成独一无二的灵感缪斯。',
+                selfAnalysis: '你是一个对情感浓度和精神美感有极高追求的人，最怕感情在日复一日的平淡中变得敷衍麻木。你渴望被用心对待、被认真记住，哪怕只是一朵路边顺手摘的小花或一句走心的情话，都能让你开心很久。',
+                matchLogic: '「浪漫仪式感艺术家」天生懂得如何经营心动。ta有着敏锐的审美和细腻的共情力，从不把「老夫老妻」当成敷衍的借口。无论是纪念日还是普通周三，ta总能制造出让你眼眶发热的专属浪漫，让你永远保持热恋般的心动。',
+                appearanceDetails: [
+                    '外貌神态：气质儒雅灵动，眼神清澈多情，说话带着诗意与温柔的顿挫感，全身上下散发着独特的艺术气息与审美品味。',
+                    '穿搭风格：喜欢复古衬衫、丝巾领结、风衣或有设计感的小众配饰，色彩搭配高级又充满故事感。',
+                    '相处名场面：某天你加班到深夜推开门，发现桌上摆着一束刚好盛开的洋桔梗和一张手写小卡片：「辛苦啦，今晚的月亮也很好看」。'
+                ],
+                tagPrompt: '@你身边那个最重仪式感、向往浪漫爱情的朋友，快来测测看。'
+            }
+        };
+
+        /**
+         * 3. 20道原创情景选择题（80个选项均匀映射到10种正缘类型，每种严格出现8次！）
+         */
+        const QUESTIONS_DATA = [
+            {
+                id: 1,
+                question: '周末下午睡醒，窗外刚好下起小雨，我的第一反应是',
+                options: [
+                    { key: 'A', text: '裹紧被子继续躺，顺手给想见的人发个表情包', target: '暗戳戳黏人小甜豆正缘' },
+                    { key: 'B', text: '泡杯热茶窝在沙发，戴上耳机听歌发呆', target: '慵懒松弛文艺系正缘' },
+                    { key: 'C', text: '突然想出门踩水坑，雨天总感觉会遇到趣事', target: '脑洞抽象快乐搭子正缘' },
+                    { key: 'D', text: '去厨房煮碗热腾腾的汤面，把家里收拾得暖融融', target: '温柔治愈居家型正缘' }
+                ]
+            },
+            {
+                id: 2,
+                question: '在街上偶遇一个颜值完全踩在审美点上的人，我会',
+                options: [
+                    { key: 'A', text: '假装低头看手机，余光忍不住偷偷瞄好几眼', target: '清冷禁欲智性恋正缘' },
+                    { key: 'B', text: '大方看过去，如果对视上了就自然笑一下', target: '阳光运动犬系正缘' },
+                    { key: 'C', text: '暗暗观察对方的穿搭品味和气场，在心里打高分', target: '斯文败类腹黑型正缘' },
+                    { key: 'D', text: '觉得ta像电影里走出来的主角，顺手记下这份心动', target: '浪漫仪式感艺术家正缘' }
+                ]
+            },
+            {
+                id: 3,
+                question: '聊天时对方突然半天没回消息，我心里通常是',
+                options: [
+                    { key: 'A', text: '估计在忙正事吧，等ta忙完自然会回我', target: '成熟克制引路人型正缘' },
+                    { key: 'B', text: '表面风平浪静，其实每隔五分钟就点开对话框看一眼', target: '暗戳戳黏人小甜豆正缘' },
+                    { key: 'C', text: '无所谓，爱回不回，转头就去干自己的酷事', target: '野性不羁酷盖型正缘' },
+                    { key: 'D', text: '不会追问，但心里会默默观察对方的态度变化', target: '清冷禁欲智性恋正缘' }
+                ]
+            },
+            {
+                id: 4,
+                question: '挑选约会餐厅或周末去处时，我最看重什么',
+                options: [
+                    { key: 'A', text: '好吃热闹最重要，最好吃完还能一起去压马路', target: '阳光运动犬系正缘' },
+                    { key: 'B', text: '环境安静有格调，灯光和音乐都得刚好舒服', target: '慵懒松弛文艺系正缘' },
+                    { key: 'C', text: '够新奇、够小众，没去过的地方才好玩', target: '脑洞抽象快乐搭子正缘' },
+                    { key: 'D', text: '提前看好评价和路线，不用排队也不踩雷', target: '成熟克制引路人型正缘' }
+                ]
+            },
+            {
+                id: 5,
+                question: '和喜欢的人发生小摩擦、有点不开心时，我习惯',
+                options: [
+                    { key: 'A', text: '有话直说不憋着，当场把误会聊开才痛快', target: '阳光运动犬系正缘' },
+                    { key: 'B', text: '先各自冷静一会儿，把逻辑理顺了再心平气和沟通', target: '清冷禁欲智性恋正缘' },
+                    { key: 'C', text: '嘴上说着没事，其实就等对方过来哄我两句', target: '暗戳戳黏人小甜豆正缘' },
+                    { key: 'D', text: '性格刚烈不委屈自己，合则来不合则散绝不内耗', target: '野性不羁酷盖型正缘' }
+                ]
+            },
+            {
+                id: 6,
+                question: '结束忙碌的一周，周五晚上我最想怎么度过',
+                options: [
+                    { key: 'A', text: '去夜跑、打球或者逛夜市，把压力全释放掉', target: '阳光运动犬系正缘' },
+                    { key: 'B', text: '看一部高分悬疑片或看书，享受独处的清醒时刻', target: '清冷禁欲智性恋正缘' },
+                    { key: 'C', text: '逛超市买新鲜食材，回家亲手做顿丰盛晚餐', target: '温柔治愈居家型正缘' },
+                    { key: 'D', text: '去Livehouse听现场或骑车兜风，感受自由的风', target: '野性不羁酷盖型正缘' }
+                ]
+            },
+            {
+                id: 6,
+                question: '结束忙碌的一周，周五晚上我最想怎么度过',
+                options: [
+                    { key: 'A', text: '去夜跑、打球或者逛夜市，把压力全释放掉', target: '阳光运动犬系正缘' },
+                    { key: 'B', text: '看一部高分悬疑片或看书，享受独处的清醒时刻', target: '清冷禁欲智性恋正缘' },
+                    { key: 'C', text: '逛超市买新鲜食材，回家亲手做顿丰盛晚餐', target: '温柔治愈居家型正缘' },
+                    { key: 'D', text: '去Livehouse听现场或骑车兜风，感受自由的风', target: '野性不羁酷盖飒姐正缘' }
+                ]
+            },
+            {
+                id: 7,
+                question: '挑礼物送给重要的人，我的思路通常是',
+                options: [
+                    { key: 'A', text: '直接问ta最近缺啥，或者送实用又有品质的东西', target: '成熟克制引路人型正缘' },
+                    { key: 'B', text: '花心思准备一束花和手写信，把仪式感拉满', target: '浪漫仪式感艺术家正缘' },
+                    { key: 'C', text: '送点意想不到的抽象好物，看ta拆开时的爆笑反应', target: '脑洞抽象快乐搭子正缘' },
+                    { key: 'D', text: '挑能提升日常幸福感的居家小物，实用又贴心', target: '温柔治愈居家型正缘' }
+                ]
+            },
+            {
+                id: 8,
+                question: '在一段关系里，最让我心动的小细节是',
+                options: [
+                    { key: 'A', text: '每次见面ta都奔向我，眼里满是藏不住的雀跃', target: '阳光运动犬系正缘' },
+                    { key: 'B', text: '平时对谁都冷淡克制，唯独对我耐心又纵容', target: '清冷禁欲智性恋正缘' },
+                    { key: 'C', text: '总能一眼看穿我口是心非的小心思，笑着宠我', target: '斯文败类腹黑型正缘' },
+                    { key: 'D', text: '走到哪都要牵着手，分开五分钟就开始发消息想我', target: '暗戳戳黏人小甜豆正缘' }
+                ]
+            },
+            {
+                id: 9,
+                question: '朋友聚会突然起哄聊起感情现状，我一般会',
+                options: [
+                    { key: 'A', text: '大方笑着接茬，顺便跟大家聊聊理想型', target: '阳光运动犬系正缘' },
+                    { key: 'B', text: '礼貌微笑带过，滴水不漏地把话题引到别人身上', target: '斯文败类腹黑型正缘' },
+                    { key: 'C', text: '顺嘴开个夸张的玩笑把话题岔开，绝不冷场', target: '脑洞抽象快乐搭子正缘' },
+                    { key: 'D', text: '安静听大家聊八卦，自己只在心里有数', target: '成熟克制引路人型正缘' }
+                ]
+            },
+            {
+                id: 10,
+                question: '如果和心动对象去短途旅行，我最期待的场景是',
+                options: [
+                    { key: 'A', text: '一起去海边看日出、爬山吹风，打卡各种好玩项目', target: '阳光运动犬系正缘' },
+                    { key: 'B', text: '不赶景点，在陌生城市的小巷里漫无目的地散步', target: '慵懒松弛文艺系正缘' },
+                    { key: 'C', text: '租辆敞篷车沿海公路飞驰，随心所欲说停就停', target: '野性不羁酷盖型正缘' },
+                    { key: 'D', text: '一路拍各种搞怪合影，连迷路都能变成搞笑回忆', target: '脑洞抽象快乐搭子正缘' }
+                ]
+            },
+            {
+                id: 11,
+                question: '深夜突然感到有点emo或疲惫时，我最希望对方',
+                options: [
+                    { key: 'A', text: '二话不说直接出现在楼下，带我去吃顿热乎夜宵', target: '阳光运动犬系正缘' },
+                    { key: 'B', text: '给我煮杯热牛奶，拍拍我的背说「别怕，家里有我」', target: '温柔治愈居家型正缘' },
+                    { key: 'C', text: '什么大道理都不讲，安静抱着我让我靠一会儿', target: '暗戳戳黏人小甜豆正缘' },
+                    { key: 'D', text: '发一首温柔的歌给我，陪我在晚风里静静待着', target: '慵懒松弛文艺系正缘' }
+                ]
+            },
+            {
+                id: 12,
+                question: '刷短视频或看剧时，哪类互动最容易让我嘴角上扬',
+                options: [
+                    { key: 'A', text: '两个人在镜头前毫无包袱地互怼、笑成一团', target: '脑洞抽象快乐搭子正缘' },
+                    { key: 'B', text: '表面绅士优雅实则步步为营的极限暧昧拉扯', target: '斯文败类腹黑型正缘' },
+                    { key: 'C', text: '一方在外霸气护短，私下却黏着另一半求贴贴', target: '暗戳戳黏人小甜豆正缘' },
+                    { key: 'D', text: '精心策划的浪漫告白，每一帧都像艺术电影', target: '浪漫仪式感艺术家正缘' }
+                ]
+            },
+            {
+                id: 13,
+                question: '关于花钱和消费观，我平时更接近哪种状态',
+                options: [
+                    { key: 'A', text: '量入为出有规划，喜欢把钱花在刀刃和长远价值上', target: '成熟克制引路人型正缘' },
+                    { key: 'B', text: '愿意为看展、买书、香薰这些精神愉悦的小物买单', target: '慵懒松弛文艺系正缘' },
+                    { key: 'C', text: '喜欢买鲜花、黑胶唱片和有设计感的美好物件', target: '浪漫仪式感艺术家正缘' },
+                    { key: 'D', text: '喜欢添置温馨的家居好物和厨房用具，把日子过暖', target: '温柔治愈居家型正缘' }
+                ]
+            },
+            {
+                id: 14,
+                question: '第一次和有好感的人单独见面，我通常会提前准备什么',
+                options: [
+                    { key: 'A', text: '挑一套干净利落、衬气质的衣服，提前十分钟到场', target: '成熟克制引路人型正缘' },
+                    { key: 'B', text: '在脑子里预演好几个聊天话题，生怕冷场尴尬', target: '暗戳戳黏人小甜豆正缘' },
+                    { key: 'C', text: '穿得舒服自在就行，觉得顺其自然最有松弛感', target: '慵懒松弛文艺系正缘' },
+                    { key: 'D', text: '喷上好闻的小众香水，在细节里藏一点小心机', target: '斯文败类腹黑型正缘' }
+                ]
+            },
+            {
+                id: 15,
+                question: '面对感情里的「安全感」，我认为最可靠的来源是',
+                options: [
+                    { key: 'A', text: '事事有回应、件件有着落，说话算数的行动力', target: '成熟克制引路人型正缘' },
+                    { key: 'B', text: '精神高度契合，哪怕不说话也能读懂彼此的想法', target: '清冷禁欲智性恋正缘' },
+                    { key: 'C', text: '无论发生什么都坚定站在我这边、替我遮风挡雨的偏爱', target: '野性不羁酷盖型正缘' },
+                    { key: 'D', text: '每天都有热腾腾的饭菜和温柔的晚安，平淡却踏实', target: '温柔治愈居家型正缘' }
+                ]
+            },
+            {
+                id: 16,
+                question: '如果养一只宠物陪伴生活，我第一直觉会选',
+                options: [
+                    { key: 'A', text: '平时高冷独立、心情好才过来蹭你一下的布偶或英短', target: '清冷禁欲智性恋正缘' },
+                    { key: 'B', text: '表情丰富、每天拆家整活给你提供无数表情包的哈士奇', target: '脑洞抽象快乐搭子正缘' },
+                    { key: 'C', text: '帅气威风、忠诚护主的德牧或杜宾，安全感爆棚', target: '野性不羁酷盖型正缘' },
+                    { key: 'D', text: '优雅高贵、毛发顺滑像艺术品一样的暹罗或波斯猫', target: '浪漫仪式感艺术家正缘' }
+                ]
+            },
+            {
+                id: 17,
+                question: '在社交场合里，我通常扮演着怎样的角色',
+                options: [
+                    { key: 'A', text: '自带气氛组属性，有我在的地方基本不会冷场', target: '脑洞抽象快乐搭子正缘' },
+                    { key: 'B', text: '温和的倾听者，大家有烦恼都喜欢找我倾诉', target: '慵懒松弛文艺系正缘' },
+                    { key: 'C', text: '游刃有余的观察者，看似随和其实心里跟明镜似的', target: '斯文败类腹黑型正缘' },
+                    { key: 'D', text: '慢热观察者，只跟熟人话多，对不熟的人保持礼貌距离', target: '清冷禁欲智性恋正缘' }
+                ]
+            },
+            {
+                id: 18,
+                question: '理想中的日常居家画面，最打动我的是哪一幕',
+                options: [
+                    { key: 'A', text: '一个人做饭时，另一个人从背后悄悄抱过来当「挂件」', target: '暗戳戳黏人小甜豆正缘' },
+                    { key: 'B', text: '阳台上种满绿植，傍晚一起吹着风喝茶聊闲天', target: '慵懒松弛文艺系正缘' },
+                    { key: 'C', text: '两个人一起在厨房忙碌洗菜做饭，烟火气十足', target: '温柔治愈居家型正缘' },
+                    { key: 'D', text: '点上香薰蜡烛放着黑胶唱片，在客厅里相拥共舞', target: '浪漫仪式感艺术家正缘' }
+                ]
+            },
+            {
+                id: 19,
+                question: '遇到一件特别好笑或心动的小事，我的第一反应是',
+                options: [
+                    { key: 'A', text: '默默记在心里，等见面时用眼神逗一逗对方', target: '斯文败类腹黑型正缘' },
+                    { key: 'B', text: '拉着对方去天台吹风，肆意大笑分享此刻的畅快', target: '野性不羁酷盖型正缘' },
+                    { key: 'C', text: '拍照记录下来，配上一段很有感觉的文字发给ta', target: '浪漫仪式感艺术家正缘' },
+                    { key: 'D', text: '会心一笑，觉得生活里这点小插曲真有意思', target: '成熟克制引路人型正缘' }
+                ]
+            },
+            {
+                id: 20,
+                question: '如果此刻正缘就站在你面前，你最想对ta说的第一句话是',
+                options: [
+                    { key: 'A', text: '你终于来啦，今晚我想听你对我说句最浪漫的话。', target: '浪漫仪式感艺术家正缘' },
+                    { key: 'B', text: '走吧，不管去哪，我跟你一起闯。', target: '野性不羁酷盖型正缘' },
+                    { key: 'C', text: '外面风大，快进屋吧，我刚好煮了热茶。', target: '温柔治愈居家型正缘' },
+                    { key: 'D', text: '看了我这么久，是不是早就想认识我了？', target: '斯文败类腹黑型正缘' }
+                ]
+            }
+        ];
+
+        // 并列兜底优先级顺序（覆盖全部10种正缘）
+        const TIE_FALLBACK_ORDER = [
+            '清冷禁欲智性恋正缘',
+            '阳光运动犬系正缘',
+            '温柔治愈居家型正缘',
+            '成熟克制引路人型正缘',
+            '斯文败类腹黑型正缘',
+            '慵懒松弛文艺系正缘',
+            '野性不羁酷盖型正缘',
+            '浪漫仪式感艺术家正缘',
+            '脑洞抽象快乐搭子正缘',
+            '暗戳戳黏人小甜豆正缘'
+        ];
+
+        // 全局答题状态变量
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(QUESTIONS_DATA.length).fill(null);
+        let currentResultKey = '';
+        let isTransitioning = false;
+        let toastTimer = null;
+
+        /**
+         * 切换页面视图（开始页 / 答题页 / 结果页）
+         */
+        function switchView(viewId) {
+            document.querySelectorAll('.view-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            const target = document.getElementById(viewId);
+            if (target) {
+                target.classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /**
+         * 开始测试：重置答题进度并进入第1题
+         */
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            userAnswers = new Array(QUESTIONS_DATA.length).fill(null);
+            isTransitioning = false;
+            renderQuestion(0);
+            switchView('view-quiz');
+        }
+
+        /**
+         * 重新测试
+         */
+        function restartQuiz() {
+            startQuiz();
+        }
+
+        /**
+         * 渲染指定索引的题目与4个选项
+         */
+        function renderQuestion(index) {
+            const qData = QUESTIONS_DATA[index];
+            if (!qData) return;
+
+            const total = QUESTIONS_DATA.length;
+            document.getElementById('question-counter').textContent = `${index + 1} / ${total}`;
+
+            const progressPercent = Math.round(((index + 1) / total) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+
+            // 动态鼓励提示语
+            const hintEl = document.getElementById('progress-hint');
+            if (index === total - 1) {
+                hintEl.textContent = '最后一题啦，马上揭晓';
+            } else if (index >= 14) {
+                hintEl.textContent = '就快测完了，保持直觉';
+            } else if (index >= 9) {
+                hintEl.textContent = '进度过半，画像越来越清晰了';
+            } else {
+                hintEl.textContent = '凭第一直觉选最准哦';
+            }
+
+            // 控制上一题按钮显示
+            const prevBtn = document.getElementById('prev-btn');
+            if (index > 0) {
+                prevBtn.classList.remove('invisible');
+            } else {
+                prevBtn.classList.add('invisible');
+            }
+
+            // 注入题干
+            document.getElementById('question-text').textContent = qData.question;
+
+            // 注入选项
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            qData.options.forEach((opt, optIdx) => {
+                const isSelected = userAnswers[index] === optIdx;
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `option-btn w-full text-left p-4 rounded-2xl border flex items-start gap-3.5 ${
+                    isSelected
+                        ? 'bg-[#2C2A29] text-white border-[#2C2A29] shadow-sm'
+                        : 'bg-[#F7F6F2]/80 hover:bg-[#F2EFE9] text-[#2C2A29] border-stone-200/70'
+                }`;
+
+                btn.innerHTML = `
+                    <span class="w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 ${
+                        isSelected
+                            ? 'bg-white text-[#2C2A29]'
+                            : 'bg-white text-[#7A7571] border border-stone-200/80'
+                    }">${opt.key}</span>
+                    <span class="text-[15px] leading-relaxed font-medium">${opt.text}</span>
+                `;
+
+                btn.onclick = () => selectOption(optIdx);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        /**
+         * 选择某个选项后记录答案并自动跳转下一题或计算结果
+         */
+        function selectOption(optIdx) {
+            if (isTransitioning) return;
+            isTransitioning = true;
+
+            userAnswers[currentQuestionIndex] = optIdx;
+            renderQuestion(currentQuestionIndex);
+
+            setTimeout(() => {
+                if (currentQuestionIndex < QUESTIONS_DATA.length - 1) {
+                    currentQuestionIndex++;
+                    renderQuestion(currentQuestionIndex);
+                } else {
+                    const resultKey = calculateResult();
+                    showResult(resultKey);
+                }
+                isTransitioning = false;
+            }, 220);
+        }
+
+        /**
+         * 返回上一题
+         */
+        function prevQuestion() {
+            if (isTransitioning || currentQuestionIndex <= 0) return;
+            currentQuestionIndex--;
+            renderQuestion(currentQuestionIndex);
+        }
+
+        /**
+         * 严格按规则计算最终正缘结果（20题 · 10种全覆盖版）
+         */
+        function calculateResult() {
+            const scores = {
+                '阳光运动犬系正缘': 0,
+                '清冷禁欲智性恋正缘': 0,
+                '慵懒松弛文艺系正缘': 0,
+                '脑洞抽象快乐搭子正缘': 0,
+                '成熟克制引路人型正缘': 0,
+                '暗戳戳黏人小甜豆正缘': 0,
+                '温柔治愈居家型正缘': 0,
+                '野性不羁酷盖型正缘': 0,
+                '斯文败类腹黑型正缘': 0,
+                '浪漫仪式感艺术家正缘': 0
+            };
+
+            // 累计20题得分
+            userAnswers.forEach((optIdx, qIdx) => {
+                if (optIdx !== null && QUESTIONS_DATA[qIdx]) {
+                    const target = QUESTIONS_DATA[qIdx].options[optIdx].target;
+                    scores[target] = (scores[target] || 0) + 1;
+                }
+            });
+
+            // 找出最高分
+            const maxScore = Math.max(...Object.values(scores));
+            const tiedCandidates = Object.keys(scores).filter(key => scores[key] === maxScore);
+
+            // 若无并列，直接返回最高分
+            if (tiedCandidates.length === 1) {
+                return tiedCandidates[0];
+            }
+
+            // 兜底规则 1：优先看第20题（索引19）所选结果是否在并列中
+            const q20OptIdx = userAnswers[19];
+            if (q20OptIdx !== null) {
+                const q20Target = QUESTIONS_DATA[19].options[q20OptIdx].target;
+                if (tiedCandidates.includes(q20Target)) {
+                    return q20Target;
+                }
+            }
+
+            // 兜底规则 2：其次看第15题（索引14）所选结果是否在并列中
+            const q15OptIdx = userAnswers[14];
+            if (q15OptIdx !== null) {
+                const q15Target = QUESTIONS_DATA[14].options[q15OptIdx].target;
+                if (tiedCandidates.includes(q15Target)) {
+                    return q15Target;
+                }
+            }
+
+            // 兜底规则 3：按指定顺序取靠前者
+            for (const fallbackKey of TIE_FALLBACK_ORDER) {
+                if (tiedCandidates.includes(fallbackKey)) {
+                    return fallbackKey;
+                }
+            }
+
+            return tiedCandidates[0];
+        }
+
+        /**
+         * 渲染结果页面（含专属定制 SVG 插画 + 海报卡片 + 三大深度分析模块）
+         */
+        function showResult(resultKey) {
+            currentResultKey = resultKey;
+            const data = RESULTS_DATA[resultKey];
+            if (!data) return;
+
+            // 1. 设置 3:4 备忘录卡片背景色与专属 SVG 人物插画
+            const memoCard = document.getElementById('result-memo-card');
+            memoCard.style.backgroundColor = data.bgColor;
+
+            const illusBox = document.getElementById('res-illustration-box');
+            illusBox.innerHTML = SVG_PORTRAITS[resultKey] || '';
+
+            // 2. 填充海报核心文案与3个核心特质标签
+            document.getElementById('res-title').textContent = data.name;
+            document.getElementById('res-verdict').textContent = data.verdict;
+            document.getElementById('res-quote').textContent = data.quote;
+
+            const keywordsContainer = document.getElementById('res-keywords');
+            keywordsContainer.innerHTML = data.keywords
+                .map(kw => `<span class="px-2.5 py-0.5 rounded-full bg-white/75 text-[#44403C] text-[11px] sm:text-xs font-medium border border-black/5"># ${kw}</span>`)
+                .join('');
+
+            // 3. 填充下半部分三大深度分析模块
+            document.getElementById('res-self-analysis').textContent = data.selfAnalysis;
+            document.getElementById('res-match-logic').textContent = data.matchLogic;
+
+            const appearanceContainer = document.getElementById('res-appearance-details');
+            appearanceContainer.innerHTML = data.appearanceDetails
+                .map(item => {
+                    const parts = item.split('：');
+                    if (parts.length === 2) {
+                        return `<p><strong class="text-[#2C2A29] font-semibold">${parts[0]}：</strong>${parts[1]}</p>`;
+                    }
+                    return `<p>${item}</p>`;
+                })
+                .join('');
+
+            // 4. 填充 @谁一起测 互动引导
+            document.getElementById('res-tag-prompt').textContent = data.tagPrompt;
+
+            switchView('view-result');
+        }
+
+        /**
+         * 使用 HTML5 Canvas 将专属 SVG 人物插画与海报文字精准绘制导出为高清 3:4 PNG 图片
+         */
+        function downloadResultImage() {
+            try {
+                const data = RESULTS_DATA[currentResultKey];
+                const svgString = SVG_PORTRAITS[currentResultKey];
+                if (!data || !svgString) return;
+
+                const canvas = document.createElement('canvas');
+                const width = 900;
+                const height = 1200; // 严格 3:4 比例
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+
+                // 将 SVG 转为 Blob URL 载入 Image 对象以便 Canvas 绘制
+                const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+                const url = URL.createObjectURL(svgBlob);
+                const img = new Image();
+
+                img.onload = function () {
+                    // 1. 低饱和纯色底
+                    ctx.fillStyle = data.bgColor;
+                    ctx.fillRect(0, 0, width, height);
+
+                    // 2. 绘制顶部圆形头像底框与专属人物 SVG 插画
+                    const avatarRadius = 135;
+                    const avatarCenterX = width / 2;
+                    const avatarCenterY = 265;
+
+                    ctx.save();
+                    ctx.beginPath();
+                    // 2. 绘制顶部圆角矩形头像底框与专属人物 SVG 插画
+                    const boxSize = 290;
+                    const boxX = (width - boxSize) / 2;
+                    const boxY = 120;
+                    const boxRadius = 64;
+
+                    ctx.save();
+                    drawRoundRect(ctx, boxX - 10, boxY - 10, boxSize + 20, boxSize + 20, boxRadius + 6);
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+                    ctx.fill();
+                    ctx.restore();
+
+                    ctx.save();
+                    drawRoundRect(ctx, boxX, boxY, boxSize, boxSize, boxRadius);
+                    ctx.clip();
+                    ctx.drawImage(img, boxX, boxY, boxSize, boxSize);
+                    ctx.restore();
+
+                    URL.revokeObjectURL(url);
+
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+
+                    // 3. 绘制正缘称号（大号加粗）
+                    ctx.fillStyle = '#2C2A29';
+                    ctx.font = 'bold 58px "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif';
+                    ctx.fillText(data.name, width / 2, 495);
+
+                    // 4. 绘制3个核心特质胶囊标签
+                    ctx.font = '500 24px "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif';
+                    const tagGap = 18;
+                    const tagPadX = 22;
+                    const tagHeight = 44;
+                    const tagWidths = data.keywords.map(kw => ctx.measureText(`# ${kw}`).width + tagPadX * 2);
+                    const totalTagsWidth = tagWidths.reduce((a, b) => a + b, 0) + tagGap * (tagWidths.length - 1);
+                    let startX = (width - totalTagsWidth) / 2;
+                    const tagY = 570;
+
+                    data.keywords.forEach((kw, idx) => {
+                        const w = tagWidths[idx];
+                        drawRoundRect(ctx, startX, tagY - tagHeight / 2, w, tagHeight, 22);
+                        ctx.fillStyle = 'rgba(255, 255, 255, 0.82)';
+                        ctx.fill();
+                        ctx.fillStyle = '#44403C';
+                        ctx.fillText(`# ${kw}`, startX + w / 2, tagY);
+                        startX += w + tagGap;
+                    });
+
+                    // 5. 绘制灵魂判词（中号常规字，自动换行）
+                    ctx.fillStyle = '#44403C';
+                    ctx.font = '500 32px "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif';
+                    const verdictLines = wrapText(ctx, data.verdict, width - 170);
+                    let currentY = 675;
+                    verdictLines.forEach(line => {
+                        ctx.fillText(line, width / 2, currentY);
+                        currentY += 50;
+                    });
+
+                    // 6. 极简短分隔线
+                    currentY += 25;
+                    ctx.fillStyle = 'rgba(44, 42, 41, 0.16)';
+                    ctx.fillRect((width - 72) / 2, currentY, 72, 3);
+
+                    // 7. 绘制朋友圈金句
+                    currentY += 58;
+                    ctx.fillStyle = '#57534E';
+                    ctx.font = '500 28px "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif';
+                    const quoteLines = wrapText(ctx, data.quote, width - 190);
+                    quoteLines.forEach(line => {
+                        ctx.fillText(line, width / 2, currentY);
+                        currentY += 46;
+                    });
+
+                    // 8. 底部极小水印：图个乐
+                    ctx.fillStyle = 'rgba(44, 42, 41, 0.35)';
+                    ctx.font = '400 22px "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif';
+                    ctx.fillText('图个乐', width / 2, height - 56);
+
+                    // 9. 生成图片预览弹窗并尝试触发下载
+                    const dataUrl = canvas.toDataURL('image/png');
+                    const previewImg = document.getElementById('exported-img-preview');
+                    if (previewImg) {
+                        previewImg.src = dataUrl;
+                    }
+                    const imageModal = document.getElementById('image-modal');
+                    if (imageModal) {
+                        imageModal.classList.remove('hidden');
+                        imageModal.classList.add('flex');
+                    }
+
+                    const link = document.createElement('a');
+                    link.download = `${data.name}.png`;
+                    link.href = dataUrl;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                    showToast('海报已生成，长按图片也可保存哦');
+                };
+
+                img.onerror = function () {
+                    URL.revokeObjectURL(url);
+                    showToast('海报生成失败，请截图保存结果页');
+                };
+
+                img.src = url;
+            } catch (e) {
+                showToast('生成图片遇到一点小问题，可直接截图保存');
+            }
+        }
+
+        /**
+         * Canvas 圆角矩形辅助绘制
+         */
+        function drawRoundRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.arcTo(x + width, y, x + width, y + height, radius);
+            ctx.arcTo(x + width, y + height, x, y + height, radius);
+            ctx.arcTo(x, y + height, x, y, radius);
+            ctx.arcTo(x, y, x + width, y, radius);
+            ctx.closePath();
+        }
+
+        /**
+         * Canvas 中文自动换行辅助函数
+         */
+        function wrapText(ctx, text, maxWidth) {
+            const lines = [];
+            let currentLine = '';
+            for (let i = 0; i < text.length; i++) {
+                const testLine = currentLine + text[i];
+                if (ctx.measureText(testLine).width > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = text[i];
+                } else {
+                    currentLine = testLine;
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine);
+            }
+            return lines;
+        }
+
+        /**
+         * 复制深度分析结果文案到剪贴板（兼容 iFrame 环境）
+         */
+        function copyResultText() {
+            const data = RESULTS_DATA[currentResultKey];
+            if (!data) return;
+
+            const shareText = [
+                `测测你正缘长啥样，我测出来是【${data.name}】（${data.keywords.join(' / ')}）！`,
+                `✨ 灵魂判词：${data.verdict}`,
+                `💭 恋爱人格底色：${data.selfAnalysis}`,
+                `💘 为什么正缘是ta：${data.matchLogic}`,
+                `💬 ${data.quote}`,
+                `${data.tagPrompt}`
+            ].join('\n\n');
+
+            try {
+                const textarea = document.createElement('textarea');
+                textarea.value = shareText;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                textarea.setSelectionRange(0, 99999);
+                const successful = document.execCommand('copy');
+                document.body.removeChild(textarea);
+
+                if (successful) {
+                    showToast('已复制深度分析文案，快去分享吧');
+                } else {
+                    showToast('复制成功，去粘贴分享吧');
+                }
+            } catch (e) {
+                showToast('长按上方文字即可复制分享哦');
+            }
+        }
+
+        /**
+         * 打开/关闭全部6种正缘图鉴弹窗（带微型 SVG 头像预览）
+         */
+        function openGalleryModal() {
+            const listEl = document.getElementById('gallery-list');
+            listEl.innerHTML = '';
+
+            Object.values(RESULTS_DATA).forEach(item => {
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.style.backgroundColor = item.bgColor;
+                card.className = 'w-full text-left p-4 rounded-2xl border border-black/5 transition transform active:scale-[0.98] flex items-center gap-3.5';
+                card.innerHTML = `
+                    <div class="w-14 h-14 rounded-full bg-white/80 shrink-0 overflow-hidden p-0.5 border border-white">
+                        ${SVG_PORTRAITS[item.name] || ''}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between gap-2 mb-1">
+                            <span class="font-bold text-[15px] text-[#2C2A29] truncate">${item.name}</span>
+                            <span class="text-xs text-[#7A7571] shrink-0">查看 →</span>
+                        </div>
+                        <p class="text-xs text-[#57534E] leading-relaxed line-clamp-2">${item.verdict}</p>
+                    </div>
+                `;
+                card.onclick = () => {
+                    closeGalleryModal();
+                    showResult(item.name);
+                };
+                listEl.appendChild(card);
+            });
+
+            const modal = document.getElementById('gallery-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeGalleryModal() {
+            const modal = document.getElementById('gallery-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('image-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        /**
+         * 轻量 Toast 提示
+         */
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toast-message');
+            if (!toast || !msgEl) return;
+
+            msgEl.textContent = msg;
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 2400);
+        }
+    </script>
+</body>
+</html>
